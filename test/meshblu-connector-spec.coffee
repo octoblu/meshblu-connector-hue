@@ -20,18 +20,18 @@ describe 'Hue', ->
     it 'should be a method', ->
       expect(@sut.isOnline).to.be.a 'function'
 
-    it 'should yield running true', (done) ->
+    it 'should yield running false', (done) ->
+      @sut.isOnline (error, response) =>
+        return done error if error?
+        expect(response.running).to.be.false
+        done()
+
+    it 'should yield running true if @hue', (done) ->
+      @sut.hue = true
       @sut.isOnline (error, response) =>
         return done error if error?
         expect(response.running).to.be.true
         done()
-
-  describe '->close', ->
-    it 'should be a method', ->
-      expect(@sut.close).to.be.a 'function'
-
-    it 'should yield when called', (done) ->
-      @sut.close => done()
 
   describe '->onMessage', ->
     it 'should be a method', ->

@@ -1,61 +1,80 @@
 {
   "schemas": {
     "version": "1.0.0",
-    "form": {
-      "message": {
-        "url": null
-      },
-      "configure": {
-        "url": null
-      }
-    },
     "configure": {
-      "url": null,
-      "options": {
+      "default-options": {
+        "title": "Default Options",
         "type" : "object",
         "properties" : {
-          "type" : "object",
-          "properties" : {
-            "example" : {
-              "type" : "string"
-            }
+          "options": {
+            "type" : "object",
+            "properties" : {}
           }
         }
+      },
+      "advanced-options": {
+        "title": "Advanced Options",
+        "type" : "object",
+        "properties" : {
+          "options": {
+            "type" : "object",
+            "properties" : {
+              "ipAddress" : {
+                "title": "Bridge IP Address",
+                "type" : "string"
+              },
+              "apiUsername": {
+                "title": "API Username",
+                "type": "string",
+                "default": "octoblu"
+              }
+            }
+          }
+        },
+        "required": ["options"]
       }
     },
     "message": {
-      "url": null,
-      "$schema": "http://json-schema.org/draft-04/schema#",
-      "definitions": {
-        "example-message-01": {
-          "type": "object",
-          "properties": {
-            "example-opt": {
-              "type": "string"
-            },
-            "another-example-opt":{
-              "type": "string"
-            }
+      "configure-light": {
+        "title": "Configure Light",
+        "type": "object",
+        "properties": {
+          "lightNumber": {
+            "title": "Light Number",
+            "type": "number"
           },
-          "required": ["example-opt", "another-example-opt"]
+          "useGroup": {
+            "title": "Use Light Group",
+            "type": "boolean",
+            "default": false
+          },
+          "on": {
+            "title": "Light On",
+            "type": "string",
+            "default": true
+          },
+          "transitiontime": {
+            "title": "Transition Time",
+            "type": "number"
+          },
+          "alert": {
+            "title": "Alert Effect",
+            "type": "string",
+            "enum": [
+              "select"
+            ]
+          },
+          "effect": {
+            "title": "Dynamic Effect",
+            "type": "string",
+            "default": "none",
+            "enum": [
+              "none",
+              "colorloop"
+            ]
+          }
         },
-        "example-message-02": {
-          "type": "object",
-          "properties": {
-            "some-opt": {
-              "type": "string"
-            },
-            "another-some-opt":{
-              "type": "string"
-            }
-          },
-          "required": ["some-opt", "another-some-opt"]
-        }
-      },
-      "type": "object",
-      "properties": {
-        "example-message-01": { "$ref": "#/definitions/example-message-01" },
-        "example-message-02": { "$ref": "#/definitions/example-message-02" }
+        "required": ["lightNumber", "on", "color"]
       }
     }
   }

@@ -7,6 +7,7 @@
         "type" : "object",
         "properties" : {
           "options": {
+            "title": "No options, see Advanced Options",
             "type" : "object",
             "properties" : {}
           }
@@ -26,7 +27,7 @@
               "apiUsername": {
                 "title": "API Username",
                 "type": "string",
-                "default": "octoblu"
+                "default": "newdeveloper"
               }
             }
           }
@@ -35,18 +36,22 @@
       }
     },
     "message": {
-      "configure-light": {
+      "configure-light-single": {
         "title": "Configure Light",
         "type": "object",
         "properties": {
-          "lightNumber": {
-            "title": "Light Number",
-            "type": "number"
-          },
           "useGroup": {
             "title": "Use Light Group",
             "type": "boolean",
             "default": false
+          },
+          "lightNumber": {
+            "title": "Light Number",
+            "type": "number"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string"
           },
           "on": {
             "title": "Light On",
@@ -74,7 +79,73 @@
             ]
           }
         },
-        "required": ["lightNumber", "on", "color"]
+        "required": ["lightNumber", "on"],
+        "x-form-schema": {
+          "angular": "message.configure-light.angular"
+        }
+      },
+      "configure-light-group": {
+        "title": "Configure Lights in Group",
+        "type": "object",
+        "properties": {
+          "useGroup": {
+            "title": "Use Light Group",
+            "type": "boolean",
+            "default": true
+          },
+          "lightNumber": {
+            "title": "Group Number",
+            "description": "Set to 0 for all lights",
+            "type": "number"
+          },
+          "color": {
+            "title": "Color",
+            "type": "string"
+          },
+          "on": {
+            "title": "Light On",
+            "type": "string",
+            "default": true
+          },
+          "transitiontime": {
+            "title": "Transition Time",
+            "type": "number"
+          },
+          "alert": {
+            "title": "Alert Effect",
+            "type": "string",
+            "enum": [
+              "select"
+            ]
+          },
+          "effect": {
+            "title": "Dynamic Effect",
+            "type": "string",
+            "default": "none",
+            "enum": [
+              "none",
+              "colorloop"
+            ]
+          }
+        },
+        "required": ["groupNumber", "on"],
+        "x-form-schema": {
+          "angular": "message.configure-light.angular"
+        }
+      }
+    },
+    "form": {
+      "message": {
+        "configure-light": {
+          "angular": [
+            { "key": "groupNumber" },
+            { "key": "color" },
+            { "key": "on" },
+            { "key": "transitiontime" },
+            { "key": "alert" },
+            { "key": "effect" }
+          ]
+        }
       }
     }
   }

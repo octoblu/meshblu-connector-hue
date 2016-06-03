@@ -19,7 +19,7 @@ class Hue extends EventEmitter
   onConfig: (device={}) =>
     debug 'on config', apikey: device.apikey
     @apikey = device.apikey || {}
-    @options = _.assign { apiUsername: 'octoblu' }, device.options
+    @options = _.assign { apiUsername: 'newdeveloper' }, device.options
     if @options.apiUsername != @apikey?.devicetype
       @apikey =
         devicetype: @options.apiUsername
@@ -33,7 +33,10 @@ class Hue extends EventEmitter
     @emit 'update', apikey: @apikey
 
   updateHue: (payload={}) =>
-    return unless payload.lightNumber? && payload.useGroup?
+    payload.lightNumber ?= 0
+    payload.useGroup ?= 0
+    payload.on ?= true
+    payload.color ?= 'white'
     debug 'updating hue', payload
     @hue.changeLights payload, (error, response) =>
       return console.error error if error?

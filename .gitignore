@@ -27,3 +27,5 @@ build/Release
 node_modules
 deploy
 meshblu.json
+message.json
+test-options.json

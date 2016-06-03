@@ -33,6 +33,7 @@ class Hue extends EventEmitter
     @emit 'update', apikey: @apikey
 
   updateHue: (payload={}) =>
+    return unless @hue?
     payload.lightNumber ?= 0
     payload.useGroup ?= 0
     payload.on ?= true

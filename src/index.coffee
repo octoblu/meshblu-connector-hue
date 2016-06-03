@@ -38,6 +38,7 @@ class Hue extends EventEmitter
     payload.useGroup ?= 0
     payload.on ?= true
     payload.color ?= 'white'
+    delete payload.alert if payload.alert == 'none'
     debug 'updating hue', payload
     @hue.changeLights payload, (error, response) =>
       return console.error error if error?

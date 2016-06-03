@@ -55,7 +55,7 @@
           },
           "on": {
             "title": "Light On",
-            "type": "string",
+            "type": "boolean",
             "default": true
           },
           "transitiontime": {
@@ -65,18 +65,12 @@
           "alert": {
             "title": "Alert Effect",
             "type": "string",
-            "enum": [
-              "select"
-            ]
+            "default": "none"
           },
           "effect": {
             "title": "Dynamic Effect",
             "type": "string",
-            "default": "none",
-            "enum": [
-              "none",
-              "colorloop"
-            ]
+            "default": "none"
           }
         },
         "required": ["lightNumber", "on"],
@@ -104,7 +98,7 @@
           },
           "on": {
             "title": "Light On",
-            "type": "string",
+            "type": "boolean",
             "default": true
           },
           "transitiontime": {
@@ -114,18 +108,12 @@
           "alert": {
             "title": "Alert Effect",
             "type": "string",
-            "enum": [
-              "select"
-            ]
+            "default": "none"
           },
           "effect": {
             "title": "Dynamic Effect",
             "type": "string",
-            "default": "none",
-            "enum": [
-              "none",
-              "colorloop"
-            ]
+            "default": "none"
           }
         },
         "required": ["groupNumber", "on"],
@@ -142,8 +130,22 @@
             { "key": "color" },
             { "key": "on" },
             { "key": "transitiontime" },
-            { "key": "alert" },
-            { "key": "effect" }
+            {
+              "key": "alert",
+              "type": "select",
+              "titleMap": [
+                { "value": "none", "name": "None" },
+                { "value": "select", "name": "On" }
+              ]
+            },
+            {
+              "key": "effect",
+              "type": "select",
+              "titleMap": [
+                { "value": "none", "name": "None" },
+                { "value": "colorloop", "name": "Color Loop" }
+              ]
+            }
           ]
         }
       }

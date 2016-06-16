@@ -1,0 +1,35 @@
+title: "Change Single Light"
+type: "object"
+properties:
+  data:
+    type: 'object'
+    properties:
+      groupNumber:
+        title: "Group Number"
+        description: "Set to 0 for all lights"
+        type: "number"
+        default: 0
+      color:
+        title: "Color"
+        type: "string"
+        default: "white"
+      on:
+        title: "Light On"
+        type: "boolean"
+        default: true
+      transitiontime:
+        title: "Transition Time"
+        type: "number"
+        default: 0
+      alert:
+        title: "Alert Effect"
+        type: "string"
+        default: "none"
+      effect:
+        title: "Dynamic Effect"
+        type: "string"
+        default: "none"
+    required: [
+      "groupNumber"
+      "on"
+    ]

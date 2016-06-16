@@ -1,52 +1,35 @@
 {EventEmitter}  = require 'events'
-_              = require 'lodash'
-tinycolor      = require 'tinycolor2'
-HueUtil        = require 'hue-util'
 debug           = require('debug')('meshblu-connector-hue:index')
+HueManager      = require './hue-manager'
 
-class Hue extends EventEmitter
+class Connector extends EventEmitter
   constructor: ->
-    @options = {}
+    @hue = new HueManager
 
   isOnline: (callback) =>
-    callback null, running: !!@hue
+    callback null, running: true
 
-  onMessage: (message={}) =>
-    { devices } = message
-    return debug 'broadcast - no action' if '*' in devices
-    @updateHue message.payload
+  changeGroup: (data, callback) =>
+    @hue.changeGroup data, callback
 
-  onConfig: (device={}) =>
-    debug 'on config', apikey: device.apikey
-    @apikey = device.apikey || {}
-    @options = _.assign { apiUsername: 'newdeveloper' }, device.options
-    if @options.apiUsername != @apikey?.devicetype
-      @apikey =
-        devicetype: @options.apiUsername
-        username: null
+  changeLight: (data, callback) =>
+    @hue.changeLight data, callback
 
-    @hue = new HueUtil @options.apiUsername, @options.ipAddress, @apikey?.username, @onUsernameChange
+  close: (callback) =>
+    debug 'on close'
+    callback()
 
-  onUsernameChange: (username) =>
-    debug 'onUsernameChange', username
-    @apikey.username = username
-    @emit 'update', apikey: @apikey
+  onConfig: (device={}, callback=->) =>
+    { @options, apikey } = device
+    debug 'on config', @options
+    @hue.createClient {@options, apikey}, (error) =>
+      return callback error if error?
+      @hue.on 'change:username', (apikey) =>
+        @emit 'update', data
+      callback()
 
-  updateHue: (payload={}) =>
-    return unless @hue?
-    payload.lightNumber ?= 0
-    payload.useGroup ?= 0
-    payload.on ?= true
-    payload.color ?= 'white'
-    delete payload.alert if payload.alert == 'none'
-    debug 'updating hue', payload
-    @hue.changeLights payload, (error, response) =>
-      return console.error error if error?
-      @emit 'message', devices: ['*'], payload: { response }
+  start: (device, callback) =>
+    debug 'started'
+    @onConfig device, callback
 
-  start: (device) =>
-    { @uuid } = device
-    debug 'started', @uuid
-    @onConfig device
-
-module.exports = Hue
+module.exports = Connector

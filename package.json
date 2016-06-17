@@ -1,6 +1,6 @@
 {
   "name": "meshblu-connector-hue",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Meshblu Connector ",
   "homepage": "https://github.com/octoblu/meshblu-connector-hue",
   "bugs": "https://github.com/octoblu/meshblu-connector-hue/issues",
@@ -25,6 +25,7 @@
     "coffee-coverage": "^1.0.1",
     "meshblu-connector-packager": "^12.0.0",
     "mocha": "^2.4.5",
+    "segfault-handler": "^1.0.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"
   },

@@ -24,8 +24,8 @@ class Connector extends EventEmitter
     debug 'on config', @options
     @hue.createClient {@options, apikey}, (error) =>
       return callback error if error?
-      @hue.on 'change:username', (apikey) =>
-        @emit 'update', data
+      @hue.on 'change:username', ({apikey}) =>
+        @emit 'update', {apikey}
       callback()
 
   start: (device, callback) =>

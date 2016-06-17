@@ -13,6 +13,19 @@ describe 'Connector', ->
   it 'should call createClient', ->
     expect(@hue.createClient).to.have.been.called
 
+  describe 'on change:username', ->
+    beforeEach ->
+      @sut.emit = sinon.stub()
+      apikey =
+        some: 'thing'
+
+      @hue.emit 'change:username', {apikey}
+
+    it 'should emit update', ->
+      apikey =
+        some: 'thing'
+      expect(@sut.emit).to.have.been.calledWith 'update', {apikey}
+
   describe '->changeGroup', ->
     beforeEach (done) ->
       @hue.changeGroup = sinon.stub().yields null

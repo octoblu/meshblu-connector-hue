@@ -30,6 +30,88 @@ $ env DEBUG='meshblu-connector-hue*' npm start
 $ npm run package
 ```
 
+# Configure Schemas
+
+# Advanced Configuration
+
+The schema defines the following properties:
+
+## `options` (object, required)
+
+Properties of the `options` object:
+
+### `apiUsername` (string)
+
+### `ipAddress` (string)
+
+# Default Configuration
+
+The schema defines the following properties:
+
+## `options` (object)
+
+Properties of the `options` object:
+
+# Message Schemas
+
+# Change Single Light
+
+The schema defines the following properties:
+
+## `data` (object)
+
+Properties of the `data` object:
+
+### `alert` (string)
+
+### `color` (string)
+
+### `effect` (string)
+
+### `groupNumber` (number, required)
+
+Set to 0 for all lights
+
+### `on` (boolean, required)
+
+### `transitiontime` (number)
+
+## `metadata` (object, required)
+
+Properties of the `metadata` object:
+
+### `jobType` (string, required)
+
+### `respondTo`
+
+# Change Single Light
+
+The schema defines the following properties:
+
+## `data` (object)
+
+Properties of the `data` object:
+
+### `alert` (string)
+
+### `color` (string)
+
+### `effect` (string)
+
+### `lightNumber` (number, required)
+
+### `on` (boolean, required)
+
+### `transitiontime` (number)
+
+## `metadata` (object, required)
+
+Properties of the `metadata` object:
+
+### `jobType` (string, required)
+
+### `respondTo`
+
 ## License
 
 The MIT License (MIT)

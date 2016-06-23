@@ -1,10 +1,10 @@
 angular: [
-  { key: "groupNumber" }
-  { key: "color" }
-  { key: "on" }
-  { key: "transitiontime" }
+  { key: "data.groupNumber" }
+  { key: "data.color" }
+  { key: "data.on" }
+  { key: "data.transitiontime" }
   {
-    key: "alert"
+    key: "data.alert"
     type: "select"
     titleMap: [
       {
@@ -18,7 +18,7 @@ angular: [
     ]
   }
   {
-    key: "effect"
+    key: "data.effect"
     type: "select"
     titleMap: [
       {

@@ -1,6 +1,6 @@
 {
   "name": "meshblu-connector-hue",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Meshblu Connector Hue",
   "homepage": "https://github.com/octoblu/meshblu-connector-hue",
   "bugs": "https://github.com/octoblu/meshblu-connector-hue/issues",
@@ -16,10 +16,8 @@
   "scripts": {
     "start": "meshblu-connector-runner",
     "test": "mocha",
-    "package": "meshblu-connector-packager",
     "generate:package": "meshblu-connector-packager",
-    "generate:schema": "meshblu-connector-schema-generator > schemas.json",
-    "generate:readme": "./generate-readme.js >> README.md"
+    "generate:schema": "meshblu-connector-schema-generator > schemas.json"
   },
   "devDependencies": {
     "chai": "^3.5.0",

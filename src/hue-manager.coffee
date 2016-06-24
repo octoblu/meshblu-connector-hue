@@ -17,7 +17,6 @@ class HueManager extends EventEmitter
     callback()
 
   _onUsernameChange: (username) =>
-    console.log username, @apikey.username
     return if username == @apikey.username
     @apikey.username = username
     @_emit 'change:username', {@apikey}

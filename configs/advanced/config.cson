@@ -12,6 +12,9 @@ properties:
         title: "API Username"
         type: "string"
         default: "newdeveloper"
+    required: [
+      "apiUsername"
+    ]
 required: [
   "options"
 ]

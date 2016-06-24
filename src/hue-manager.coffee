@@ -1,3 +1,4 @@
+_              = require 'lodash'
 HueUtil        = require 'hue-util'
 {EventEmitter} = require 'events'
 tinycolor      = require 'tinycolor2'
@@ -5,6 +6,7 @@ debug          = require('debug')('meshblu-connector-hue:hue-manager')
 
 class HueManager extends EventEmitter
   createClient: ({@options, @apikey}, callback) =>
+    @_emit = _.throttle @emit, 500, {leading: true, trailing: false}
     @apikey ?= {}
     @options ?= {}
     {apiUsername, ipAddress} = @options
@@ -15,8 +17,10 @@ class HueManager extends EventEmitter
     callback()
 
   _onUsernameChange: (username) =>
+    console.log username, @apikey.username
+    return if username == @apikey.username
     @apikey.username = username
-    @emit 'change:username', {@apikey}
+    @_emit 'change:username', {@apikey}
 
   changeLight: (data, callback) =>
     {

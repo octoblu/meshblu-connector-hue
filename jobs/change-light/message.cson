@@ -6,8 +6,9 @@ properties:
     properties:
       lightNumber:
         title: "Light Number"
-        type: "number"
+        type: "integer"
         default: 0
+        minimum: 0
       color:
         title: "Color"
         type: "string"
@@ -17,9 +18,10 @@ properties:
         type: "boolean"
         default: true
       transitiontime:
-        title: "Transition Time"
-        type: "number"
+        title: "Transition Time (in milliseconds)"
+        type: "integer"
         default: 0
+        minimum: 0
       alert:
         title: "Alert Effect"
         type: "string"

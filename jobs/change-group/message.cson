@@ -7,8 +7,9 @@ properties:
       groupNumber:
         title: "Group Number"
         description: "Set to 0 for all lights"
-        type: "number"
+        type: "integer"
         default: 0
+        minimum: 0
       color:
         title: "Color"
         type: "string"
@@ -18,9 +19,10 @@ properties:
         type: "boolean"
         default: true
       transitiontime:
-        title: "Transition Time"
-        type: "number"
+        title: "Transition Time (in milliseconds)"
+        type: "integer"
         default: 0
+        minimum: 0
       alert:
         title: "Alert Effect"
         type: "string"

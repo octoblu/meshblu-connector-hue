@@ -13,7 +13,11 @@ angular: [
       }
       {
         value: "select"
-        name: "On"
+        name: "Flash Once (select)"
+      }
+      {
+        value: "lselect"
+        name: "Flash Repeatedly (lselect)"
       }
     ]
   }

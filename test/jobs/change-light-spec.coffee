@@ -4,7 +4,7 @@ describe 'ChangeLight', ->
   context 'when given a valid message', ->
     beforeEach (done) ->
       @connector =
-        changeLight: sinon.stub().yields null
+        updateLight: sinon.stub().yields null
       message =
         data:
           on: true
@@ -20,7 +20,7 @@ describe 'ChangeLight', ->
     it 'should not error', ->
       expect(@error).not.to.exist
 
-    it 'should call changeLight', ->
+    it 'should call updateLight', ->
       data =
         lightNumber: 0
         on: true
@@ -28,7 +28,7 @@ describe 'ChangeLight', ->
         color: 'white'
         effect: 'the-effect'
         transitionTime: 1000
-      expect(@connector.changeLight).to.have.been.calledWith data
+      expect(@connector.updateLight).to.have.been.calledWith data
 
   context 'when given an invalid message', ->
     beforeEach (done) ->

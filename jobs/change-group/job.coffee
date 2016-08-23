@@ -16,7 +16,7 @@ class ChangeGroup
       effect
     } = data
 
-    @connector.changeGroup { groupNumber, color, transitionTime, alert, effect, on: data.on }, callback
+    @connector.updateGroup { groupNumber, color, transitionTime, alert, effect, on: data.on }, callback
 
   _userError: (code, message) =>
     error = new Error message

@@ -8,6 +8,9 @@ class Connector extends EventEmitter
     @hue = new HueManager
     @connected = false
 
+    @lightStates = {}
+    @groupStates = {}
+
     @prevState = {
       lightStates: {}
       groupStates: {}

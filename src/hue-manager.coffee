@@ -21,6 +21,9 @@ class HueManager extends EventEmitter
     @apikey.username = username
     @_emit 'change:username', {@apikey}
 
+  getLights: (callback) =>
+    @hue.getLights callback
+
   changeLight: (data, callback) =>
     {
       lightNumber

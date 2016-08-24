@@ -1,39 +1,54 @@
 {EventEmitter}  = require 'events'
 debug           = require('debug')('meshblu-connector-hue:index')
 HueManager      = require './hue-manager'
+_               = require 'lodash'
 
 class Connector extends EventEmitter
   constructor: ->
     @hue = new HueManager
     @connected = false
 
+    @prevState = {
+      lightStates: {}
+      groupStates: {}
+    }
+
   isOnline: (callback) =>
     callback null, running: true
 
-  changeGroup: (data, callback) =>
-    @hue.changeGroup data, callback
+  changeGroup: () =>
+    _.forEach @groupStates, (data, key) =>
+      @hue.changeGroup data unless _.isEqual data, @prevState.groupStates[key]
+    @prevState.groupStates = @groupStates
 
-  changeLight: (data, callback) =>
-    @hue.changeLight data, callback
+  changeLight: () =>
+    _.forEach @lightStates, (data, key) =>
+      @hue.changeLight data unless _.isEqual data, @prevState.lightStates[key]
+    @prevState.lightStates = @lightStates
 
   updateGroup: (data, callback=->) =>
-    @emit 'update', { groupState: data }
+    @groupStates[data.groupNumber] = data
+    @emit 'update', { groupStates: @groupStates }
     callback()
 
   updateLight: (data, callback=->) =>
-    @emit 'update', { lightState: data }
+    @lightStates[data.lightNumber] = data
+    @emit 'update', { lightStates: @lightStates }
     callback()
+
+  resetState: () =>
+    @emit 'update', { lightStates: {}, groupStates: {}}
 
   close: (callback) =>
     debug 'on close'
     callback()
 
   handleStateChange: (device={}) =>
-    @changeGroup device.groupState if device?.groupState?
-    @changeLight device.lightState if device?.lightState?
+    @changeGroup() if device?.groupStates?
+    @changeLight() if device?.lightStates?
 
   onConfig: (device={}, callback=->) =>
-    { @options, apikey } = device
+    { @options, apikey, @groupStates, @lightStates } = device
     debug 'on config', @options
 
     if @connected == false

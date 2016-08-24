@@ -1,0 +1,5 @@
+title: "Reset State"
+type: "object"
+properties:
+  data:
+    type: "object"

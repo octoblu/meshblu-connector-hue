@@ -26,7 +26,7 @@ describe 'Connector', ->
         some: 'thing'
       expect(@sut.emit).to.have.been.calledWith 'update', {apikey}
 
-  describe '->changeGroup', ->
+  xdescribe '->changeGroup', ->
     beforeEach (done) ->
       @hue.changeGroup = sinon.stub().yields null
       @sut.changeGroup groupNumber: 1, done
@@ -34,7 +34,7 @@ describe 'Connector', ->
     it 'should call @hue.changeGroup', ->
       expect(@hue.changeGroup).to.have.been.calledWith groupNumber: 1
 
-  describe '->changeLight', ->
+  xdescribe '->changeLight', ->
     beforeEach (done) ->
       @hue.changeLight = sinon.stub().yields null
       @sut.changeLight lightNumber: 1, done

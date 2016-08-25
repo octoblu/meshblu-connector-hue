@@ -4,7 +4,7 @@ describe 'ChangeGroup', ->
   context 'when given a valid message', ->
     beforeEach (done) ->
       @connector =
-        updateGroup: sinon.stub().yields null
+        changeGroup: sinon.stub().yields null
       message =
         data:
           on: true
@@ -20,7 +20,7 @@ describe 'ChangeGroup', ->
     it 'should not error', ->
       expect(@error).not.to.exist
 
-    it 'should call updateGroup', ->
+    it 'should call changeGroup', ->
       data =
         groupNumber: 0
         on: true
@@ -28,7 +28,7 @@ describe 'ChangeGroup', ->
         color: 'white'
         effect: 'the-effect'
         transitionTime: 1000
-      expect(@connector.updateGroup).to.have.been.calledWith data
+      expect(@connector.changeGroup).to.have.been.calledWith data
 
   context 'when given an invalid message', ->
     beforeEach (done) ->

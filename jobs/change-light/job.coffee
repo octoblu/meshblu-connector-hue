@@ -16,7 +16,7 @@ class ChangeLight
       effect
     } = data
 
-    @connector.updateLight { lightNumber, color, transitionTime, alert, effect, on: data.on }, callback
+    @connector.changeLight { lightNumber, color, transitionTime, alert, effect, on: data.on }, callback
 
   _userError: (code, message) =>
     error = new Error message
